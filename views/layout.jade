@@ -15,7 +15,11 @@ html.no-js(lang='en')
     meta(name="description", content=description)
     meta(name="author", content=author)
     meta(name="viewport", content='width=device-width, initial-scale=1')
-    link(rel='stylesheet', href='/css/style.css')
+    block addcss
+    link(rel='stylesheet', href='/css/bootstrap.css')
+    link(rel='stylesheet', href='/css/signin.css')
+    //script(src='http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js')
+    //script(src='/js/bootstrap.min.js')
     //-script(src='js/libs/modernizr-2.0.6.min.js')
   body
     block header

@@ -39,6 +39,7 @@ server.listen( port);
 
 //Setup Socket.IO
 var io = io.listen(server);
+io.set('log level',1); //reduce logging
 io.sockets.on('connection', function(socket){
   console.log('Client Connected');
   socket.on('message', function(data){
@@ -60,7 +61,7 @@ io.sockets.on('connection', function(socket){
 server.get('/', function(req,res){
   res.render('index.jade', {
     locals : { 
-              title : 'Your Page Title'
+              title : 'CAH Online'
              ,description: 'Your Page Description'
              ,author: 'Your Name'
              ,analyticssiteid: 'XXXXXXX' 
