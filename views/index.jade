@@ -5,9 +5,16 @@ block addcss
 
 block content
 	div.container
-		form.form-signin
+		form(class='form-signin', method="POST", action="rooms")
 			div(class='text-center')
-				h3.form-signin-heading Create a User
-				input.form-control(type='text', placeholder='Username')
-				input.form-control(type='password', placeholder='Password')
-				button(class='btn btn-large btn-primary btn-lg middle', type='submit') Sign in
+				h3.form-signin-heading Enter a Username
+				input.form-control(id='username', type='text', name="username", placeholder="username", value=username)
+				p(class='text-left inline')
+					a(href="/auth/facebook")
+						img(src='/images/fb.png', class="pull-left") 
+				p Fetch your username from FB
+				button(id='buttonsubmit', class='btn btn-large btn-primary form-control top5', type='submit') Enter
+	div.container
+
+block footer
+	script(defer, src='/js/mainscript.js')
