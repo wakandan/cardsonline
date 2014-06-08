@@ -4,6 +4,7 @@ $(document).ready(function() {
   var socket = io.connect();
   socket.emit('assignsocketname', document.getElementById('username').value); 
   socket.emit('populateroom','populateroom')
+
   function socketsend()
   {
     var mess = document.getElementById('chat-input').value
@@ -27,7 +28,7 @@ $(document).ready(function() {
     document.getElementById('users-box').innerHTML = "";
     test.forEach(function(entry){
     var div = document.getElementById('users-box');
-    div.innerHTML = div.innerHTML + "<button class='btn btn-inverse btn-large btn-block'><span class='glyphicon glyphicon-user'></span>" + entry + "</button>";
+    div.innerHTML = div.innerHTML + "<button class='btn btn-info btn-large btn-block'><span class='glyphicon glyphicon-user'></span>" + entry + "</button>";
     });  
   });
 
@@ -44,15 +45,9 @@ $(document).ready(function() {
     div.innerHTML = "";
     for (var roomnum in data) {
     var div = document.getElementById('rooms');
-    div.innerHTML = div.innerHTML + 
-    "<form method='POST' action='rooms/"+roomnum+"'>"+
-    "<input id='username' type='hidden' name='username' placeholder='username' value='" +
-    document.getElementById('username').value +
-    "' class='form-control'/>"+
-    "<button id='gotoroom' type='submit' class='btn btn-default btn-info btn-sm col-sm-2'>"+
-    "<span class='glyphicon glyphicon-expand'>"+
-    "</span>Room#"+roomnum+"["+data[roomnum]+"]</button></form>"; 
-    
+    div.innerHTML = div.innerHTML +
+    "<a href='#' class='roomspacer btn btn-default btn-success btn-lg'><span class='glyphicon glyphicon-plus'></span> Room"
+     +roomnum+"["+data[roomnum]+"]</a>"  
     };
   });
  

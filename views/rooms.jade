@@ -5,33 +5,31 @@ block addcss
 
 block content
 	div.container
-		p Hello #{username}, Join a room to play or chat below!
+		h1 Hello <strong>#{username}</strong>, join a room to play or chat below!
 		div.row
-			input(type="hidden",id="username",value="#{username}")
+			input(type='hidden',id='username',value='#{username}')
 			input(id='chat-input',class="chat-input col-sm-9")
 			input(id='send-button',value='Send', class='send-button col-sm-1 btn btn-small btn-primary')
 		div.row
-			div(id='chat-box', class="chat-box col-sm-8 border-box")
-			div(id='users-box', class="users-box col-sm-2 border-box")
+			div(class='col-sm-8')
+				div(class='panel panel-info')
+					div(class='panel-heading')
+						h4(class='text-center') Chat Box
+					div(id='chat-box', class="chat-box border-box")
+			div(class='col-sm-2')
+				div(class='panel panel-info')
+					div(class='panel-heading')
+						h4(class='text-center') Users
+					div(id='users-box', class="users-box border-box")
 		div.row
-			input(id='createroom',class='btn btn-default btn-primary btn-lg col-sm-3', value='Create Room')
-			input(id='populateroom',class='btn btn-default btn-primary btn-lg col-sm-3', value='Show Room')
+			input(id='createroom',class='spacer btn btn-default btn-primary btn-lg col-sm-2', value='Create Room') <span class="glyphicon glyphicon-refresh">
+			input(id='populateroom',class='spacer btn btn-default btn-primary btn-lg col-sm-2', value='Show Rooms')
 		div.row(id='rooms',class='col-sm-10')
 
 
 				
 block footer
 	script(defer, src='/js/script.js')
-	script(defer,type='text/javascript')
-		function populateuser() {
-		var test = "#{userlist}";
-		if (!(test == "")) {test = test.split(",");test.push(document.getElementById('username').value);}
-		else { test = [document.getElementById('username').value];}
-		test.forEach(function(entry){
-		var div = document.getElementById('users-box');
-		div.innerHTML = div.innerHTML + "<button class='btn btn-inverse btn-large btn-block'><span class='glyphicon glyphicon-user'></span>" + entry + "</button>";
-		});
-		}
-		populateuser();
+
 
 					

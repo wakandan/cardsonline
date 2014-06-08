@@ -93,6 +93,10 @@ io.sockets.on('connection', function(socket){
     socket.on('populateroom', function(){
       socket.to('lobby').emit('createroom',rooms);
   });
+
+        socket.on('populateroom', function(){
+      socket.to('lobby').emit('populate',userlist);
+  });
     
   socket.on('message', function(data){
     socket.broadcast.emit('server_message',data);
@@ -158,7 +162,7 @@ server.get('/auth/facebook/callback',
 server.get('/',incrementUserid,session, function(req,res){
   res.render('index.jade', {
     locals : { 
-              title : 'Enter'
+              title : 'Cards Online'
              ,description: 'Home Page'
              ,author: 'Your Name'
              ,analyticssiteid: 'XXXXXXX'
@@ -181,9 +185,11 @@ server.get('/rooms', function(req,res){
 });
 */
 
-server.post('/rooms', 
+server.post('/rooms',
   function(req, res, next) {
     res.locals.user = req.body.username;
+    req.session.user = req.body.username;
+    console.log(req.session)
     next();
   }, 
   function(req,res) {
@@ -202,6 +208,7 @@ server.post('/rooms',
 
 //Room
 server.post('/rooms/*', function(req, res, next){
+    console.log(req.session)
     var roomnumber = ((req.url).split("/"))[2];
     res.local.user = req.body.username;
     if ( roomnumber <= 0 || roomnumber > roomnum || rooms[roomnumber] > 4)

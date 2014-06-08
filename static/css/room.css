@@ -14,7 +14,21 @@
 
 .users-box {
 	height:500px;
- 	overflow-y: scroll;
+ 	overflow-y: hidden;
 	overflow-x: hidden;
-	background-color: white;
+
+}
+
+.spacer{
+	margin-left:10px;
+}
+
+.roomspacer {
+	margin-left:10px;
+	margin-top:10px;
+}
+
+.panel-info{
+	margin-top:0px;
+	padding:0px;
 }

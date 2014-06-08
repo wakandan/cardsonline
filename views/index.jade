@@ -4,17 +4,21 @@ block addcss
 	link(rel='stylesheet', href='/css/signin.css')
 
 block content
-	div.container
-		form(class='form-signin', method="POST", action="rooms")
-			div(class='text-center')
-				h3.form-signin-heading Enter a Username
-				input.form-control(id='username', type='text', name="username", placeholder="username", value=username)
-				p(class='text-left inline')
-					a(href="/auth/facebook")
-						img(src='/images/fb.png', class="pull-left") 
-				p Fetch your username from FB
-				button(id='buttonsubmit', class='btn btn-large btn-primary form-control top5', type='submit') Enter
-	div.container
+	div(class="container")
+		div(class='jumbotron')
+			h1 Cards Online
+			p Just trying out the cool stuff from node js! This game is based on <a href="http://cardsagainsthumanity.com/">Cards Against Humanity</a>
+
+			
+			form(class='form-signin', method="POST", action="rooms")
+				div(class='text-center')
+					input.form-control(id='username', type='text', name="username", placeholder="username", value=username)
+					p(class='text-left inline')
+						a(href="/auth/facebook")
+							img(src='/images/fb.png', class="pull-left") 
+					p Fetch your username from FB
+					button(id='buttonsubmit', class='btn btn-large btn-primary form-control top5', type='submit') Enter
+			
 
 block footer
 	script(defer, src='/js/mainscript.js')
