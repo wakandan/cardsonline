@@ -5,29 +5,92 @@ block addcss
 
 block content
 	div.container
-		h1 Hello <strong>#{username}</strong>, join a room to play or chat below!
+		h1 <strong>#{username}</strong>
 		div.row
-			input(type='hidden',id='username',value='#{username}')
-			input(id='chat-input',class="chat-input col-sm-9")
-			input(id='send-button',value='Send', class='send-button col-sm-1 btn btn-small btn-primary')
+			div(class='col-sm-2')
+				div(class='whitecard panel')
+					div(class='panel-heading')
+						h3(class='panel-title')
+					div(class='panel-body')
+						p(class='whitecard1',id='whitecard1') noun1
+			div(class='col-sm-2')
+				div(class='whitecard panel')
+					div(class='panel-heading')
+						h3(class='panel-title')
+					div(class='panel-body')
+						p(class='whitecard1') noun1
+			div(class='col-sm-2')
+				div(class='whitecard panel')
+					div(class='panel-heading')
+						h3(class='panel-title')
+					div(class='panel-body')
+						p(class='whitecard1') noun1
+			div(class='col-sm-2')
+				div(class='whitecard panel')
+					div(class='panel-heading')
+						h3(class='panel-title')
+					div(class='panel-body')
+						p(class='whitecard1') noun1
+			div(class='col-sm-2')
+				div(class='whitecard panel')
+					div(class='panel-heading') 
+						h3(class='panel-title')
+					div(class='panel-body')
+						p(class='whitecard1') noun1
+		div.row
+			div(class='col-sm-2')
+				div(class='blackcard panel')
+					div(class='panel-heading')
+						h3(class='panel-title',id='blackcardtitle1') Player 1
+					div(class='panel-body')
+						p(id='blackcard1') noun1
+			div(class='col-sm-2')
+				div(class='blackcard panel')
+					div(class='panel-heading')
+						h3(class='panel-title',id='blackcardtitle2') Player 2
+					div(class='panel-body')
+						p(id='blackcard2') noun1
+			div(class='col-sm-2')
+				div(class='blackcard panel')
+					div(class='panel-heading')
+						h3(class='panel-title',id='blackcardtitle3') Player 3
+					div(class='panel-body')
+						p(id='blackcard3') noun1
+			div(class='col-sm-2')
+				div(class='blackcard panel')
+					div(class='panel-heading')
+						h3(class='panel-title',id='blackcardtitle4') Player 4
+					div(class='panel-body')
+						p(id='blackcard4') noun1
+			div(class='col-sm-2')
+				div(class='blackcard panel')
+					div(class='panel-heading')
+						h3(class='panel-title',id='blackcardtitle5') Player 5
+					div(class='panel-body')
+						p(id='blackcard5') noun1
+
+
 		div.row
 			div(class='col-sm-8')
-				div(class='panel panel-info')
+				input(type='hidden',id='username',value='#{username}')
+				input(id='chat-input',class="chat-input")
+			div(class='col-sm-2')
+				input(id='send-button',value='Send', class='send-button col-sm-1 btn btn-small btn-primary')
+		div.row
+			div(class='col-sm-8')
+				div(class='panel panel-primary')
 					div(class='panel-heading')
-						h4(class='text-center') Chat Box
+						h3(class='panel-title text-center') Chat Box
 					div(id='chat-box', class="chat-box border-box")
 			div(class='col-sm-2')
-				div(class='panel panel-info')
+				div(class='panel panel-primary')
 					div(class='panel-heading')
-						h4(class='text-center') Users
+						h3(class='panel-title text-center') Users
 					div(id='users-box', class="users-box border-box")
 		div.row
-			input(id='createroom',class='spacer btn btn-default btn-primary btn-lg col-sm-2', value='Create Room') <span class="glyphicon glyphicon-refresh">
-			input(id='populateroom',class='spacer btn btn-default btn-primary btn-lg col-sm-2', value='Show Rooms')
 		div.row(id='rooms',class='col-sm-10')
 
-
-				
+			
 block footer
 	script(defer, src='/js/script.js')
 

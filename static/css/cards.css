@@ -1,0 +1,103 @@
+.card_holder {
+  float: left;
+  position: relative;
+  overflow-x: visible !important;
+  overflow-y: visible !important;
+  margin-right: 2px;
+  z-index: 1;
+}
+.blackcard .logo_element {
+  border: 1px solid #231f20;
+}
+.logo_1 {
+  left: 2px;
+}
+.blackcard .logo_1 {
+  background: #57585a;
+}
+.whitecard .logo_1 {
+  background: #231f20;
+}
+.logo_2 {
+  left: 10px;
+}
+.blackcard .logo_2 {
+  background: #b2b3b7;
+}
+.whitecard .logo_2 {
+  background: #636366;
+}
+.logo_3 {
+  left: 16px;
+  top: 5px;
+}
+.blackcard .logo_3 {
+  background: white;
+  color: black;
+}
+.blackcard .card_number {
+  background: white;
+  display: inline-block;
+  color: #231f20;
+  text-align: center;
+}
+.blackcard {
+  background: #231f20;
+  color: white;
+  background-image:linear-gradient(#231f20, #231f20 75%, #333)
+}
+.game_black_card_wrapper {
+  width: 232px;
+  float:left;
+  margin-top: 5px;
+    margin-left: auto;
+    margin-right: auto;
+
+}
+.game_white_card_wrapper {
+  width: 232px;
+  float: left;
+  margin-top: 5px;
+  
+}
+.game_black_card {
+  width: 232px;
+  height: 232px;
+  margin-top: 15px;
+}
+.card {
+  position: relative;
+  width: 200px;
+  height: 200px;
+  border: 1px solid #999;
+  padding: 15px;
+  font-size: 15pt;
+  float: left;
+  border-radius: .25em;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  -o-user-select: none;
+  user-select: none;
+}
+
+.game_right_side_cards {
+  margin-top: 15px;
+  min-width: 600px;
+  cursor: pointer;
+  z-index: 200;
+}
+
+.game_white_cards_binder {
+  border: 3px solid silver;
+  display: inline-block;
+  margin-right: 4px;
+  margin-bottom: 4px;
+  border-radius: .25em;
+}
+
+.whitecard {
+  background: white;
+  color: #231f20;
+}

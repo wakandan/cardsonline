@@ -1,17 +1,35 @@
+
 //Room
-
 var userlist = [];
-
-//Game Room
-  var roomnum = 0;
-  var rooms = {};
 
 //setup Dependencies
 var connect = require('connect')
     , express = require('express')
     , io = require('socket.io')
     , port = (process.env.PORT || 8081)
-    , passport = require('passport');
+    , passport = require('passport')
+    , fs = require('fs');
+
+//Read the cards
+var blackcardcsv = fs.readFileSync('./static/assets/blackCards.csv','utf8')
+var line = blackcardcsv.split("\n")
+var blackcardlist = [];
+for ( i = 1 ; i < line.length; i++)
+{
+ 
+ blackcardlist.push((line[i].split(','))[0]);
+}
+//console.log(blackcardlist[Math.round(Math.random()*blackcardlist.length)]);
+
+var whitecardcsv = fs.readFileSync('./static/assets/whiteCards.csv','utf8')
+var line = whitecardcsv.split("\n")
+var whitecardlist = [];
+for ( i = 1 ; i < line.length; i++)
+{
+
+ whitecardlist.push((line[i].split(','))[0]);
+}
+//console.log(whitecardlist)
 
 //Username
 var userid = Math.round(10000 * Math.random());
@@ -82,19 +100,8 @@ io.sockets.on('connection', function(socket){
       socket.broadcast.to('lobby').emit('populate',userlist);
   });
 
-  socket.on('createroom', function(data){
-      roomnum++;
-      rooms[roomnum] = 0;
-      console.log(socket.room);
-      //socket.broadcast.to('lobby').emit('testla',"test");
-      socket.to('lobby').emit('createroom',rooms);
-  });
 
-    socket.on('populateroom', function(){
-      socket.to('lobby').emit('createroom',rooms);
-  });
-
-        socket.on('populateroom', function(){
+      socket.on('populateroom', function(){
       socket.to('lobby').emit('populate',userlist);
   });
     
@@ -112,6 +119,7 @@ io.sockets.on('connection', function(socket){
       { 
         userlist = userlist.splice(index,1);
         socket.broadcast.to('lobby').emit('server_message', socket.username + " has left the lobby");
+        console.log(userlist);
         socket.broadcast.to('lobby').emit('populate',userlist);
         console.log('User removed from user list:'+ socket.username);
       }
@@ -171,64 +179,33 @@ server.get('/',incrementUserid,session, function(req,res){
   });
 });
 
-/*
-server.get('/rooms', function(req,res){
-  res.render('rooms.jade', {
-    locals : { 
-              title : 'Rooms'
-             ,description: 'Your Page Description'
-             ,author: 'Your Name'
-             ,analyticssiteid: 'XXXXXXX' 
-             ,username: res.locals.user
-            }
-  });
-});
-*/
-
 server.post('/rooms',
   function(req, res, next) {
     res.locals.user = req.body.username;
     req.session.user = req.body.username;
-    console.log(req.session)
     next();
   }, 
   function(req,res) {
     res.render('rooms.jade', {
     locals : { 
-              title : 'Rooms'
+              title : 'Game Room'
              ,description: 'Your Page Description'
              ,author: 'Your Name'
              ,analyticssiteid: 'XXXXXXX' 
              ,username: res.locals.user
              ,userlist: userlist || null
-             ,rooms: rooms
             }
   });
   });
 
-//Room
-server.post('/rooms/*', function(req, res, next){
-    console.log(req.session)
-    var roomnumber = ((req.url).split("/"))[2];
-    res.local.user = req.body.username;
-    if ( roomnumber <= 0 || roomnumber > roomnum || rooms[roomnumber] > 4)
-    {throw new NotFound;}
-    else
-    {next();}
-  },
- function(req,res){
-    res.render('gameroom.jade', {
-    locals : { 
-              title : 'Rooms'
-             ,description: 'Your Page Description'
-             ,author: 'Your Name'
-             ,analyticssiteid: 'XXXXXXX' 
-             ,username: res.locals.user
-             ,userlist: userlist || null
-             ,roomnumber: res.locals.roomnumber
-            }
-        })
- });
+server.get('/blackcards',function(req,res){
+  res.json(blackcardlist[Math.round(Math.random()*blackcardlist.length)]);
+});
+
+server.get('/whitecards',function(req,res){
+  res.json(whitecardlist[Math.round(Math.random()*whitecardlist.length)]);
+});
+
 //A Route for Creating a 500 Error (Useful to keep around)
 server.get('/500', function(req, res){
     throw new Error('This is a 500 Error');

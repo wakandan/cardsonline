@@ -1,8 +1,12 @@
 .row .chat-input {
-	padding:5px;
+	width:100%;
 }
 .row {
 	padding: 5px;
+}
+
+.row .send-button {
+	width:100%;	
 }
 
 .chat-box {
@@ -32,3 +36,19 @@
 	margin-top:0px;
 	padding:0px;
 }
+
+.whitecard {
+	background-color: white;
+	border: solid;
+	border-width:1px;
+	height:150px;
+}
+
+.blackcard {
+	color:white;
+	background-color: black;
+	border: solid;
+	border-width:1px;
+	height:150px;
+}
+

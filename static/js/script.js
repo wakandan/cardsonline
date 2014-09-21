@@ -1,5 +1,5 @@
 $(document).ready(function() {   
-
+  
   var objDiv = document.getElementById('chat-box');
   var socket = io.connect();
   socket.emit('assignsocketname', document.getElementById('username').value); 
@@ -22,13 +22,25 @@ $(document).ready(function() {
     socket.emit('populateroom','populateroom');  
 
   });
+  var blackcard;
+   $.getJSON("/blackcards",function(data){
+    for ( i = 1 ; i <= 5 ; i++)
+  {
+    document.getElementById('blackcard'+i).innerHTML = data;
+  }
 
+  });
+  
   socket.on('populate', function(data){
     var test = data;
+    var i = 1;
     document.getElementById('users-box').innerHTML = "";
     test.forEach(function(entry){
+    document.getElementById('blackcardtitle'+i).innerHTML = entry;
+
+    i++;
     var div = document.getElementById('users-box');
-    div.innerHTML = div.innerHTML + "<button class='btn btn-info btn-large btn-block'><span class='glyphicon glyphicon-user'></span>" + entry + "</button>";
+    div.innerHTML = div.innerHTML + "<button class='btn btn-info btn-block'><span class='glyphicon glyphicon-user'></span>" + entry + "</button>";
     });  
   });
 
@@ -39,17 +51,6 @@ $(document).ready(function() {
    objDiv.scrollTop = objDiv.scrollHeight;
   });
 
-
-  socket.on('createroom', function(data){
-    var div = document.getElementById('rooms');
-    div.innerHTML = "";
-    for (var roomnum in data) {
-    var div = document.getElementById('rooms');
-    div.innerHTML = div.innerHTML +
-    "<a href='#' class='roomspacer btn btn-default btn-success btn-lg'><span class='glyphicon glyphicon-plus'></span> Room"
-     +roomnum+"["+data[roomnum]+"]</a>"  
-    };
-  });
  
 
   document.getElementById("chat-input").addEventListener("keydown", function(e) {
@@ -59,11 +60,5 @@ $(document).ready(function() {
     if (e.keyCode == 13) { 
    socketsend();}
 }, false);
-
-  $('#createroom').bind('click', function() {
-    socket.emit('createroom','createroom');
-  });
-
-
 
 });
