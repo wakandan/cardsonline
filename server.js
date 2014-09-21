@@ -196,7 +196,7 @@ server.post('/rooms',
              ,userlist: userlist || null
             }
   });
-  });
+});
 
 server.get('/blackcards',function(req,res){
   res.json(blackcardlist[Math.round(Math.random()*blackcardlist.length)]);
